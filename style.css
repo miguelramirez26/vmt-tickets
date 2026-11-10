@@ -307,3 +307,32 @@ body.is-opening .app-icon {
     filter: none !important;
   }
 }
+
+/* --- AÑADE ESTO AL FINAL DE TU CSS --- */
+
+/* Estado de carga del botón */
+.open-button.is-loading {
+  opacity: .9;
+  pointer-events: none; /* Evita que el usuario pulse dos veces */
+}
+
+/* Oculta la flecha cuando está cargando */
+.open-button.is-loading .arrow {
+  display: none;
+}
+
+/* Crea y añade el Spinner dinámico mediante un pseudo-elemento */
+.open-button.is-loading::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Animación de rotación infinita para el Spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
