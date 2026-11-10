@@ -1,3 +1,4 @@
+
 :root {
   color-scheme: light;
   --bg: #f5f6f5;
@@ -31,38 +32,90 @@ body {
   justify-content: space-between;
 }
 
-/* ANIMACIÓN DE ENTRADA */
+/* ANIMACIONES DE ENTRADA */
 
 @keyframes entrada {
-  from { opacity: 0; transform: translateY(28px) scale(.97); filter: blur(10px); }
-  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(.97);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
 }
 
 @keyframes iconoPop {
-  0%   { opacity: 0; transform: scale(.6) translateY(20px); filter: blur(8px); }
-  60%  { opacity: 1; transform: scale(1.06) translateY(0); filter: blur(0); }
-  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+  0% {
+    opacity: 0;
+    transform: scale(.6) translateY(20px);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06) translateY(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
 }
 
 @keyframes flotar {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
-.topbar, .app-icon, h1, .subtitle, .access-card, footer {
+/* ENTRADA GENERAL: EXCLUIMOS H1 */
+
+.topbar, .app-icon, .subtitle, .access-card, footer {
   opacity: 0;
   animation: entrada 1.2s cubic-bezier(.16, 1, .3, 1) both;
 }
 
-.topbar      { animation-delay: .2s; }
-.app-icon    { animation: iconoPop 1.3s cubic-bezier(.16, 1, .3, 1) .5s both,
-                          flotar 5s ease-in-out 2.2s infinite; }
-h1           { animation-delay: .85s; }
-.subtitle    { animation-delay: 1.05s; }
-.access-card { animation-delay: 1.3s; }
-footer       { animation-delay: 1.7s; }
+.topbar {
+  animation-delay: .2s;
+}
 
-/* CABECERA: MISMA QUE LA APLICACIÓN */
+.app-icon {
+  animation: iconoPop 1.3s cubic-bezier(.16, 1, .3, 1) .5s both,
+             flotar 5s ease-in-out 2.2s infinite;
+}
+
+.subtitle {
+  animation-delay: 1.05s;
+}
+
+.access-card {
+  animation-delay: 1.3s;
+}
+
+footer {
+  animation-delay: 1.7s;
+}
+
+/* ANIMACIÓN PROPIA DEL TÍTULO MATRIX: SIN DIFUMINADO */
+
+@keyframes tituloEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CABECERA */
 
 .topbar {
   display: flex;
@@ -126,11 +179,16 @@ main {
   transition: transform .38s ease, box-shadow .38s ease;
 }
 
+/* TÍTULO: INDEPENDIENTE DEL BLUR GENERAL */
+
 h1 {
   margin: 0 0 9px;
   font-size: 29px;
   font-weight: 800;
   letter-spacing: -.9px;
+  opacity: 0;
+  filter: none !important;
+  animation: tituloEntrada .8s ease .85s forwards;
 }
 
 .subtitle {
@@ -213,7 +271,7 @@ h1 {
   flex-shrink: 0;
 }
 
-/* PIE DE PÁGINA: MISMO QUE LA APLICACIÓN */
+/* PIE DE PÁGINA */
 
 footer {
   display: flex;
@@ -264,8 +322,28 @@ body.is-opening .app-icon {
 }
 
 .open-button.is-loading {
-  opacity: .85;
+  opacity: .9;
   pointer-events: none;
+}
+
+.open-button.is-loading .arrow {
+  display: none;
+}
+
+.open-button.is-loading::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ADAPTACIÓN A MÓVILES */
@@ -300,39 +378,11 @@ body.is-opening .app-icon {
 /* ACCESIBILIDAD */
 
 @media (prefers-reduced-motion: reduce) {
-  .topbar, main, footer, .app-icon, h1, .subtitle, .access-card, .open-button {
+  .topbar, main, footer, .app-icon, h1, .subtitle,
+  .access-card, .open-button {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;
     filter: none !important;
   }
-}
-
-/* --- AÑADE ESTO AL FINAL DE TU CSS --- */
-
-/* Estado de carga del botón */
-.open-button.is-loading {
-  opacity: .9;
-  pointer-events: none; /* Evita que el usuario pulse dos veces */
-}
-
-/* Oculta la flecha cuando está cargando */
-.open-button.is-loading .arrow {
-  display: none;
-}
-
-/* Crea y añade el Spinner dinámico mediante un pseudo-elemento */
-.open-button.is-loading::after {
-  content: "";
-  width: 18px;
-  height: 18px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #ffffff;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-}
-
-/* Animación de rotación infinita para el Spinner */
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
