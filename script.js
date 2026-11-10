@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // =========================================================================
-  // 1. ANIMACIÓN MATRIX: REVELADO LENTO DE IZQUIERDA A DERECHA
+  // 1. ANIMACIÓN DE REVELADO DE IZQUIERDA A DERECHA (MATRIX)
   // =========================================================================
 
   const titulo = document.getElementById("matrix-title");
@@ -19,17 +19,17 @@ document.addEventListener("DOMContentLoaded", () => {
         .split("")
         .map((letra, indice) => {
 
-          // Letras ya reveladas
+          // Letras ya descifradas definitivamente
           if (indice < Math.floor(posicionActual)) {
             return textoOriginal[indice];
           }
 
-          // Mantener los espacios
-          if (letra === " ") {
+          // Mantener espacios en blanco
+          if (textoOriginal[indice] === " ") {
             return " ";
           }
 
-          // Letra que se está descifrando
+          // Letra actual con caracteres aleatorios
           if (indice === Math.floor(posicionActual)) {
             return glifos[Math.floor(Math.random() * glifos.length)];
           }
@@ -40,8 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .join("");
 
-      // Velocidad de revelado: cuanto menor, más lenta
-      posicionActual += 0.30;
+      // VELOCIDAD ORIGINAL
+      posicionActual += 0.25;
 
       // Finalizar cuando se haya revelado todo el texto
       if (posicionActual >= textoOriginal.length) {
