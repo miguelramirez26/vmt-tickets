@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .join("");
 
       // Velocidad de revelado: cuanto menor, más lenta
-      posicionActual += 0.35;
+      posicionActual += 0.65;
 
       // Finalizar cuando se haya revelado todo el texto
       if (posicionActual >= textoOriginal.length) {
