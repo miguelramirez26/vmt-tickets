@@ -25,7 +25,7 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main>
         <img class="app-icon" src="https://lh3.googleusercontent.com/d/1SlLlLRaGp9IMHT1LLPym2Ejoh8vLksTG=s512" alt="VMT Tickets">
-        <h1>VMT Tickets</h1>
+        <h1 id="matrix-title">VMT Tickets</h1>
         <p class="subtitle"> Gestión y registro de tickets </p>
         <section class="access-card">
             <p> Accede a VMT Tickets para fotografiar tus recibos, revisar la información y gestionar tus gastos. </p>
@@ -48,22 +48,6 @@
     </footer>
 
     <!-- SCRIPT DE INTERACCIÓN DINÁMICA -->
-    <script>
-        const openLink = document.getElementById('openLink');
-        const openButtonText = document.getElementById('openButtonText');
-
-        openLink.addEventListener('click', function () {
-            // Añade la clase de carga para el CSS (spinner, etc.)
-            openLink.classList.add('is-loading');
-            // Cambia el texto estático por el de acción
-            openButtonText.textContent = 'Cargando...';
-        });
-
-        // Al regresar atrás en el historial del navegador, restauramos el estado inicial
-        window.addEventListener('pageshow', function () {
-            openLink.classList.remove('is-loading');
-            openButtonText.textContent = 'Abrir VMT Tickets';
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
