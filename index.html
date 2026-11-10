@@ -2,17 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
   <title>VMT Tickets</title>
   <meta name="theme-color" content="#f5f6f5">
 
   <link rel="apple-touch-icon"
-        sizes="180x180"
-        href="https://lh3.googleusercontent.com/d/1SlLlLRaGp9IMHT1LLPym2Ejoh8vLksTG=s512">
+    sizes="180x180"
+    href="https://lh3.googleusercontent.com/d/1SlLlLRaGp9IMHT1LLPym2Ejoh8vLksTG=s512">
 
   <link rel="icon"
-        href="https://lh3.googleusercontent.com/d/1SlLlLRaGp9IMHT1LLPym2Ejoh8vLksTG=s512">
+    href="https://lh3.googleusercontent.com/d/1SlLlLRaGp9IMHT1LLPym2Ejoh8vLksTG=s512">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="VMT Tickets">
@@ -30,7 +30,7 @@
       --accent: #009a74;
       --accent-hover: #008060;
       --accent-soft: #e6f5f1;
-      --shadow: 0 12px 40px rgba(20,35,24,.06);
+      --shadow: 0 8px 35px rgba(20, 35, 24, .045);
     }
 
     * {
@@ -41,151 +41,109 @@
       margin: 0;
       min-height: 100vh;
       min-height: 100svh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Roboto, Arial, sans-serif;
+      padding: 40px 20px;
+      padding-bottom: calc(40px + env(safe-area-inset-bottom));
+      background: var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(ellipse at 50% 35%, rgba(0,154,116,.075), transparent 55%),
-        var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
       display: flex;
       flex-direction: column;
-      padding:
-        max(24px, env(safe-area-inset-top))
-        22px
-        max(20px, env(safe-area-inset-bottom));
+      justify-content: space-between;
     }
 
+    /* CABECERA: MISMA QUE LA APLICACIÓN */
+
     .topbar {
-      width: 100%;
-      max-width: 1080px;
-      margin: 0 auto;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      gap: 15px;
+      width: 100%;
+      max-width: 530px;
+      margin: 0 auto 52px;
+      transition: opacity .38s ease, transform .38s ease;
     }
 
     .brand {
       display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-vmt {
-      color: var(--accent);
-      font-size: 29px;
-      font-weight: 850;
-      letter-spacing: -1.8px;
+      flex-direction: column;
       line-height: 1;
     }
 
-    .brand-divider {
-      width: 1px;
-      height: 30px;
-      background: var(--border);
+    .brand-vmt {
+      margin-bottom: 4px;
+      color: var(--accent);
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -.02em;
     }
 
     .brand-company {
-      font-size: 11px;
-      font-weight: 750;
-      letter-spacing: 1px;
       color: var(--text);
-    }
-
-    .brand-caption {
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 9px;
-      letter-spacing: 1.2px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
     }
 
     .internal-label {
+      margin-top: 8px;
       color: var(--muted);
       font-size: 10px;
-      letter-spacing: 1.2px;
-      font-weight: 650;
-      white-space: nowrap;
+      font-weight: 600;
+      letter-spacing: .08em;
     }
+
+    /* CONTENIDO PRINCIPAL */
 
     main {
       width: 100%;
-      max-width: 520px;
-      margin: auto;
-      padding: 55px 0;
-    }
-
-    .intro {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 13px;
-      border-radius: 30px;
-      background: var(--accent-soft);
-      color: var(--accent-hover);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .8px;
-    }
-
-    .eyebrow-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    h1 {
-      margin: 20px 0 12px;
-      font-size: clamp(34px, 8vw, 45px);
-      line-height: 1.08;
-      letter-spacing: -1.8px;
-      font-weight: 800;
-    }
-
-    .intro p {
       max-width: 390px;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.65;
-    }
-
-    .access-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 30px;
-      box-shadow: var(--shadow);
+      margin: auto;
+      padding: 30px 0;
       text-align: center;
+      transition: opacity .38s ease, transform .38s ease;
     }
 
     .app-icon {
-      width: 88px;
-      height: 88px;
-      object-fit: contain;
-      border-radius: 21px;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 5px 10px rgba(20,35,24,.08));
+      display: block;
+      width: 92px;
+      height: 92px;
+      object-fit: cover;
+      border-radius: 22px;
+      margin: 0 auto 24px;
+      box-shadow: 0 5px 18px rgba(20, 35, 24, .10);
+      transition: transform .38s ease, box-shadow .38s ease;
     }
 
-    .access-card h2 {
+    h1 {
       margin: 0 0 9px;
-      font-size: 19px;
-      font-weight: 750;
-      letter-spacing: -.3px;
+      font-size: 29px;
+      font-weight: 800;
+      letter-spacing: -.9px;
+    }
+
+    .subtitle {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* TARJETA DE ACCESO */
+
+    .access-card {
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
     }
 
     .access-card p {
-      margin: 0 auto 25px;
-      max-width: 330px;
+      margin: 0 0 22px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.6;
     }
 
@@ -197,21 +155,26 @@
       width: 100%;
       min-height: 54px;
       padding: 15px 20px;
+      border: 0;
       border-radius: 12px;
       background: var(--accent);
       color: #ffffff;
       text-decoration: none;
       font-size: 15px;
-      font-weight: 700;
-      box-shadow: 0 5px 13px rgba(0,154,116,.18);
-      transition: background .2s ease, transform .2s ease,
-                  box-shadow .2s ease;
+      font-weight: 600;
+      box-shadow: 0 5px 13px rgba(0, 154, 116, .18);
+      transition:
+        background .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease,
+        opacity .25s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .open-button:hover {
       background: var(--accent-hover);
-      box-shadow: 0 7px 18px rgba(0,128,96,.22);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0, 154, 116, .23);
     }
 
     .open-button:active {
@@ -240,60 +203,95 @@
       flex-shrink: 0;
     }
 
+    /* PIE DE PÁGINA: MISMO QUE LA APLICACIÓN */
+
     footer {
-      width: 100%;
-      max-width: 1080px;
-      margin: 0 auto;
-      padding-top: 18px;
-      border-top: 1px solid var(--border);
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 15px;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 530px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
       color: var(--muted);
       font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      transition: opacity .38s ease, transform .38s ease;
     }
 
     .footer-company {
-      font-weight: 750;
-      letter-spacing: .7px;
-      color: var(--text);
+      font-weight: inherit;
+      color: inherit;
+      letter-spacing: inherit;
     }
 
     .footer-tagline {
       text-align: right;
     }
 
-    @media (max-width: 420px) {
+    /* ANIMACIÓN DE SALIDA */
+
+    body.is-opening .topbar,
+    body.is-opening main,
+    body.is-opening footer {
+      opacity: 0;
+      transform: translateY(-14px);
+    }
+
+    body.is-opening .app-icon {
+      transform: scale(1.08);
+      box-shadow:
+        0 0 0 12px rgba(0, 154, 116, .10),
+        0 0 35px rgba(0, 154, 116, .25);
+    }
+
+    .open-button.is-loading {
+      opacity: .85;
+      pointer-events: none;
+    }
+
+    /* ADAPTACIÓN A MÓVILES */
+
+    @media (max-width: 480px) {
       body {
-        padding-left: 18px;
-        padding-right: 18px;
+        padding: 28px 18px;
+        padding-bottom: calc(28px + env(safe-area-inset-bottom));
       }
 
-      .internal-label {
-        font-size: 9px;
+      .topbar {
+        margin-bottom: 42px;
       }
 
       .brand-vmt {
-        font-size: 26px;
-      }
-
-      .brand-company {
-        font-size: 10px;
+        font-size: 34px;
       }
 
       main {
-        padding: 40px 0;
+        padding: 25px 0;
       }
 
       .access-card {
-        padding: 26px 21px;
+        padding: 23px;
+      }
+
+      footer {
+        font-size: 9px;
       }
     }
 
+    /* ACCESIBILIDAD */
+
     @media (prefers-reduced-motion: reduce) {
+      .topbar,
+      main,
+      footer,
+      .app-icon,
       .open-button {
-        transition: none;
+        transition: none !important;
       }
     }
   </style>
@@ -301,71 +299,102 @@
 
 <body>
 
+  <!-- CABECERA -->
+
   <header class="topbar">
     <div class="brand">
-      <div class="brand-vmt">VMT</div>
-      <div class="brand-divider"></div>
-      <div>
-        <div class="brand-company">PEPPERL+FUCHS</div>
-        <div class="brand-caption">GESTIÓN INTERNA</div>
-      </div>
+      <span class="brand-vmt">VMT</span>
+      <span class="brand-company">Pepperl+Fuchs</span>
     </div>
 
-    <div class="internal-label">GESTIÓN DE GASTOS</div>
+    <span class="internal-label">GESTIÓN INTERNA</span>
   </header>
 
+  <!-- CONTENIDO PRINCIPAL -->
+
   <main>
-    <section class="intro">
-      <div class="eyebrow">
-        <span class="eyebrow-dot"></span>
-        GESTIÓN DE GASTOS
-      </div>
 
-      <h1>Ticket de gasto</h1>
+    <img
+      class="app-icon"
+      src="https://lh3.googleusercontent.com/d/1SlLlLRaGp9IMHT1LLPym2Ejoh8vLksTG=s512"
+      alt="VMT Tickets">
 
-      <p>
-        Captura tus tickets y registra tus gastos
-        de forma rápida y sencilla.
-      </p>
-    </section>
+    <h1>VMT Tickets</h1>
+
+    <p class="subtitle">
+      Gestión y registro de tickets
+    </p>
 
     <section class="access-card">
-      <img
-        class="app-icon"
-        src="https://lh3.googleusercontent.com/d/1SlLlLRaGp9IMHT1LLPym2Ejoh8vLksTG=s512"
-        alt="VMT Tickets">
-
-      <h2>Todo listo para empezar</h2>
 
       <p>
-        Accede a VMT Tickets para fotografiar tus recibos,
-        revisar la información y gestionar tus gastos.
+        Accede a VMT Tickets para fotografiar tus recibos, revisar la información y gestionar tus gastos.
       </p>
 
       <a
         class="open-button"
-        href="https://script.google.com/macros/s/AKfycbzE0MpgQZPdkIdwGzgLK6EM918Sl2YxcIjb_k-BMrMDqts-pWazjrditaP3aUznfjoM-A/exec">
+        href="https://script.google.com/macros/s/AKfycbzE0MpgQZPdkIdwGzgLK6EM918Sl2YxcIjb_k-BMrMDqts-pWazjrditaP3aUznfjoM-A/exec"
+        id="openLink">
 
-        Abrir VMT Tickets
+        <span id="openButtonText">Abrir VMT Tickets</span>
         <span class="arrow">→</span>
+
       </a>
 
       <div class="access-note">
         <svg viewBox="0 0 24 24" fill="none"
-             stroke-width="2" stroke-linecap="round"
-             stroke-linejoin="round">
+          stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
           <rect x="3" y="11" width="18" height="10" rx="2"></rect>
           <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
         </svg>
+
         Acceso mediante tu cuenta de Google
       </div>
+
     </section>
+
   </main>
 
+  <!-- PIE DE PÁGINA -->
+
   <footer>
-    <div class="footer-company">PEPPERL+FUCHS</div>
-    <div class="footer-tagline">Your expenses, simplified.</div>
+    <span class="footer-company">Pepperl+Fuchs</span>
+    <span class="footer-tagline">Tus gastos, simplificados</span>
   </footer>
+
+  <!-- ANIMACIÓN AL ABRIR LA APLICACIÓN -->
+
+  <script>
+    const openLink = document.getElementById('openLink');
+    const buttonText = document.getElementById('openButtonText');
+
+    openLink.addEventListener('click', function(event) {
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+      }
+
+      event.preventDefault();
+
+      if (openLink.dataset.opening === 'true') {
+        return;
+      }
+
+      openLink.dataset.opening = 'true';
+      openLink.classList.add('is-loading');
+      openLink.setAttribute('aria-busy', 'true');
+
+      buttonText.textContent = 'Preparando aplicación…';
+
+      document.body.classList.add('is-opening');
+
+      setTimeout(function() {
+        window.location.href = openLink.href;
+      }, 420);
+
+    });
+  </script>
 
 </body>
 </html>
