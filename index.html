@@ -87,36 +87,18 @@
     <span class="footer-tagline">Tus gastos, simplificados</span>
   </footer>
 
-  <!-- ANIMACIÓN AL ABRIR LA APLICACIÓN -->
+  <!-- AL PULSAR: solo el spinner en lugar de la flecha, el texto no cambia -->
 
   <script>
     const openLink = document.getElementById('openLink');
-    const buttonText = document.getElementById('openButtonText');
 
-    openLink.addEventListener('click', function(event) {
-
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        return;
-      }
-
-      event.preventDefault();
-
-      if (openLink.dataset.opening === 'true') {
-        return;
-      }
-
-      openLink.dataset.opening = 'true';
+    openLink.addEventListener('click', function () {
       openLink.classList.add('is-loading');
-      openLink.setAttribute('aria-busy', 'true');
+    });
 
-      buttonText.textContent = 'Preparando aplicación…';
-
-      document.body.classList.add('is-opening');
-
-      setTimeout(function() {
-        window.location.href = openLink.href;
-      }, 420);
-
+    // Si vuelves atrás desde la app, deja el botón como al principio
+    window.addEventListener('pageshow', function () {
+      openLink.classList.remove('is-loading');
     });
   </script>
 
