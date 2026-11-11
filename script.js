@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (titulo) {
     const textoOriginal = "VMT Tickets";
-    const glifos = "ABCDEFGHJKLMNOPQRSTUVWXYZ0123456789#$&%@+?*";
+    const glifos = "!<>-_/[]{}=+*^?#01";
     const sinAnimacion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (!sinAnimacion) {
@@ -35,40 +35,39 @@ document.addEventListener("DOMContentLoaded", () => {
         caja.textContent = "";
       });
 
-      let posicionActual = 0;
+      // Efecto de la vista previa: una ola de símbolos que se va descifrando
+      // de izquierda a derecha. Empieza cuando el título aparece (.85s en el CSS).
+      const retraso = 850;
+      const duracion = 1500;
+      const inicio = performance.now() + retraso;
+      const n = textoOriginal.length;
 
-      const dibujar = () => {
-        cajas.forEach((caja, indice) => {
-          const letra = textoOriginal[indice];
+      const paso = (ahora) => {
+        const k = Math.max(0, (ahora - inicio) / duracion);
 
-          if (indice < Math.floor(posicionActual)) {
+        cajas.forEach((caja, i) => {
+          const letra = textoOriginal[i];
+          const hecho = k * (n + 4) - i;
+
+          if (letra === " ") {
+            caja.textContent = " ";
+          } else if (hecho > 3) {
             caja.textContent = letra;                       // ya descifrada
-          } else if (letra === " ") {
-            caja.textContent = " ";                         // espacio
-          } else if (indice === Math.floor(posicionActual)) {
+          } else if (hecho > 0) {
             caja.textContent = glifos[Math.floor(Math.random() * glifos.length)];
           } else {
             caja.textContent = "";                          // todavía oculta
           }
         });
+
+        if (k < 1) {
+          requestAnimationFrame(paso);
+        } else {
+          cajas.forEach((caja, i) => { caja.textContent = textoOriginal[i]; });
+        }
       };
 
-      // Esperar a que el título empiece a aparecer (coincide con el CSS: .85s)
-      setTimeout(() => {
-        const intervalo = setInterval(() => {
-          dibujar();
-
-          // VELOCIDAD ORIGINAL
-          posicionActual += 0.25;
-
-          if (posicionActual >= textoOriginal.length) {
-            cajas.forEach((caja, indice) => {
-              caja.textContent = textoOriginal[indice];
-            });
-            clearInterval(intervalo);
-          }
-        }, 40);
-      }, 850);
+      requestAnimationFrame(paso);
     }
   }
 
