@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (titulo) {
     const textoOriginal = "VMT Tickets";
-    const glifos = "ABCDEFGHJKLMNOPQRSTUVWXYZ0123456789";
+    const glifos = "ABCDEFGHJKLMNOPQRSTUVWXYZ0123456789#$&%@+?*";
     const sinAnimacion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (!sinAnimacion) {
