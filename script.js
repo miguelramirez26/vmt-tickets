@@ -72,24 +72,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================================================================
-  // 2. CONTROL DEL BOTÓN DE ACCESO
+  // 2. TRANSICIÓN AUTOMÁTICA A LA APLICACIÓN DE GOOGLE APPS SCRIPT
+  //    Espera 2.8s para lucir el descifrado del título y muestra el iframe.
   // =========================================================================
 
-  const openLink = document.getElementById("openLink");
-  const openButtonText = document.getElementById("openButtonText");
+  const appWrapper = document.getElementById("app-wrapper");
 
-  if (openLink && openButtonText) {
-
-    openLink.addEventListener("click", function () {
-      openLink.classList.add("is-loading");
-      openButtonText.textContent = "Cargando...";
-    });
-
-    window.addEventListener("pageshow", function () {
-      openLink.classList.remove("is-loading");
-      openButtonText.textContent = "Abrir VMT Tickets";
-    });
-
+  if (appWrapper) {
+    setTimeout(() => {
+      appWrapper.classList.add("visible");
+    }, 2800);
   }
 
 });
