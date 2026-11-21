@@ -11,6 +11,33 @@
     <meta name="apple-mobile-web-app-title" content="VMT Tickets">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Contenedor de la app cargando por detrás */
+        #app-wrapper {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f5f6f5;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+            overflow: hidden;
+        }
+        #app-wrapper.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #app-wrapper iframe {
+            position: absolute;
+            top: -92px; /* Esconde el banner de Google Apps Script */
+            left: 0;
+            width: 100%;
+            height: calc(100% + 92px);
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <!-- CABECERA -->
@@ -22,23 +49,11 @@
         <span class="internal-label">GESTIÓN INTERNA</span>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
+    <!-- PANTALLA DE BIENVENIDA CON TU ANIMACIÓN MATRIX -->
     <main>
         <img class="app-icon" src="apple-touch-icon.png" alt="VMT Tickets">
         <h1 id="matrix-title">VMT Tickets</h1>
-        <p class="subtitle"> Gestión y registro de tickets </p>
-        <section class="access-card">
-            <p> Accede a VMT Tickets para fotografiar tus recibos, revisar la información y gestionar tus gastos. </p>
-            <a class="open-button" href="https://script.google.com/macros/s/AKfycbzE0MpgQZPdkIdwGzgLK6EM918Sl2YxcIjb_k-BMrMDqts-pWazjrditaP3aUznfjoM-A/exec" id="openLink">
-                <span id="openButtonText">Abrir VMT Tickets</span>
-                <span class="arrow">→</span>
-            </a>
-            <div class="access-note">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="11" width="18" height="10" rx="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg> Acceso mediante tu cuenta de Google </div>
-        </section>
+        <p class="subtitle">Gestión y registro de tickets</p>
     </main>
 
     <!-- PIE DE PÁGINA -->
@@ -47,7 +62,24 @@
         <span class="footer-tagline">Tus gastos, simplificados</span>
     </footer>
 
-    <!-- SCRIPT DE INTERACCIÓN DINÁMICA -->
+    <!-- TU APP CARGANDO EN SEGUNDO PLANO -->
+    <div id="app-wrapper">
+        <iframe 
+            src="https://google.com" 
+            allow="camera; microphone">
+        </iframe>
+    </div>
+
+    <!-- TU SCRIPT ORIGINAL INTACTO -->
     <script src="script.js"></script>
+
+    <!-- TRANSICIÓN EXACTA AL TERMINAR EL DESCIFRADO (850ms + 1500ms + 450ms de pausa) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                document.getElementById('app-wrapper').classList.add('visible');
+            }, 2800);
+        });
+    </script>
 </body>
 </html>
